@@ -1,18 +1,10 @@
 <script lang="ts" setup>
 definePageMeta({
     middleware: "protected",
+    layout: "users",
 });
-const { user, clear } = useUserSession();
-
-const logout = async () => {
-    await clear();
-    navigateTo("/");
-};
 </script>
 
 <template>
-    <div>
-        {{ user }}
-    </div>
-    <UButton @click="logout">logout</UButton>
+    <Empty label="select a chat to start a new conversation" />
 </template>

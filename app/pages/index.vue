@@ -22,36 +22,56 @@ const registerForm = reactive({
     email: "mahdi.molaei0002@gmail.com",
     password: "@M123456789",
 });
-const isLoading = ref(false);
+
 const selectedItem = ref(0);
-const { fetch: refreshSession } = useUserSession();
+const { fetch: refreshSession, user } = useUserSession();
+
+const { isLoading, toggleLoading, showMessage, showError } = useStore();
 
 const login = async (event: FormSubmitEvent<LoginSchema>) => {
     try {
+        toggleLoading(true);
         const user = await $fetch("/api/auth/login", {
             body: event.data,
             method: "post",
         });
-        console.log(user);
+        showMessage({
+            title: "User loggedIn",
+        });
         await refreshSession();
         await navigateTo("/users");
     } catch (error) {
-        console.log(error);
+        const err = handleError(error);
+        showError(err);
+    } finally {
+        toggleLoading(false);
     }
 };
 const register = async (event: FormSubmitEvent<RegisterSchema>) => {
     try {
+        toggleLoading(true);
         const user = await $fetch("/api/auth/register", {
             body: event.data,
             method: "post",
         });
-        console.log(user);
+        showMessage({
+            title: "you are registered successfully",
+            description: "Please login",
+        });
 
         selectedItem.value = 0;
     } catch (error) {
-        console.log(error);
+        const err = handleError(error);
+        showError(err);
+    } finally {
+        toggleLoading(false);
     }
 };
+watchEffect(() => {
+    if (user.value) {
+        navigateTo("/users");
+    }
+});
 </script>
 
 <template>

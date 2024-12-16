@@ -13,9 +13,14 @@ export default defineNuxtConfig({
         "@nuxt/image",
     ],
     runtimeConfig: {
-        public: {},
+        public: {
+            uploadPreset: "",
+        },
         githubId: "",
         githubSecret: "",
+        cloudinaryApiKey: "",
+        cloudinaryApiSecret: "",
+        cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
     },
     colorMode: {
         preference: "light",
