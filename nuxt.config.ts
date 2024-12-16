@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     ],
     runtimeConfig: {
         public: {},
+        githubId: "",
+        githubSecret: "",
     },
     colorMode: {
         preference: "light",

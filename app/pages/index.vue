@@ -24,12 +24,22 @@ const registerForm = reactive({
 });
 const isLoading = ref(false);
 const selectedItem = ref(0);
+const { fetch: refreshSession } = useUserSession();
 
-const login = (event: FormSubmitEvent<LoginSchema>) => {
-    console.log(event.data);
+const login = async (event: FormSubmitEvent<LoginSchema>) => {
+    try {
+        const user = await $fetch("/api/auth/login", {
+            body: event.data,
+            method: "post",
+        });
+        console.log(user);
+        await refreshSession();
+        await navigateTo("/users");
+    } catch (error) {
+        console.log(error);
+    }
 };
 const register = async (event: FormSubmitEvent<RegisterSchema>) => {
-    // console.log(event.data)
     try {
         const user = await $fetch("/api/auth/register", {
             body: event.data,
