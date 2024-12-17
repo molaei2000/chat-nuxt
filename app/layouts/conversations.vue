@@ -104,28 +104,28 @@ const updateHandler = (conversation: FullConversation) => {
     );
 };
 
-// onMounted(() => {
-//     if (user.value) {
-//         // @ts-ignore
-//         pusherClient.subscribe(user.value.id);
-//         // @ts-ignore
-//         pusherClient.bind("conversation:new", newHandler);
-//         // @ts-ignore
-//         pusherClient.bind("conversation:remove", removeHandler);
-//         // @ts-ignore
-//         pusherClient.bind("conversation:update", updateHandler);
-//     }
-// });
-// onBeforeUnmount(() => {
-//     if (user.value) {
-//         // @ts-ignore
-//         pusherClient.unsubscribe(user.value.id);
-//         // @ts-ignore
-//         pusherClient.unbind("conversation:new", newHandler);
-//         // @ts-ignore
-//         pusherClient.unbind("conversation:remove", removeHandler);
-//         // @ts-ignore
-//         pusherClient.unbind("conversation:update", updateHandler);
-//     }
-// });
+onMounted(() => {
+    if (user.value) {
+        // @ts-ignore
+        pusherClient.subscribe(user.value.id);
+        // @ts-ignore
+        pusherClient.bind("conversation:new", newHandler);
+        // @ts-ignore
+        pusherClient.bind("conversation:remove", removeHandler);
+        // @ts-ignore
+        pusherClient.bind("conversation:update", updateHandler);
+    }
+});
+onBeforeUnmount(() => {
+    if (user.value) {
+        // @ts-ignore
+        pusherClient.unsubscribe(user.value.id);
+        // @ts-ignore
+        pusherClient.unbind("conversation:new", newHandler);
+        // @ts-ignore
+        pusherClient.unbind("conversation:remove", removeHandler);
+        // @ts-ignore
+        pusherClient.unbind("conversation:update", updateHandler);
+    }
+});
 </script>

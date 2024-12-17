@@ -15,12 +15,15 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             uploadPreset: "",
+            pusherAppKey: "",
         },
         githubId: "",
         githubSecret: "",
         cloudinaryApiKey: "",
         cloudinaryApiSecret: "",
         cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+        pusherAppId: "",
+        pusherSecret: "",
     },
     colorMode: {
         preference: "light",

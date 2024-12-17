@@ -1,5 +1,6 @@
 <template>
     <div>
+        <ActiveStatus></ActiveStatus>
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>

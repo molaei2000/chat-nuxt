@@ -38,22 +38,22 @@ const messagesHandler = async (message: FullMessage) => {
     apiMessages.value = [...apiMessages.value, message];
 };
 
-// onMounted(async () => {
-//     // @ts-ignore
-//     pusherClient.subscribe(conversationId.value);
+onMounted(async () => {
+    // @ts-ignore
+    pusherClient.subscribe(conversationId.value);
 
-//     // @ts-ignore
-//     pusherClient.bind("messages:new", messagesHandler);
+    // @ts-ignore
+    pusherClient.bind("messages:new", messagesHandler);
 
-//     await nextTick();
-//     bottomRef.value?.scrollIntoView();
-// });
+    await nextTick();
+    bottomRef.value?.scrollIntoView();
+});
 
-// onUnmounted(() => {
-//     // @ts-ignore
-//     pusherClient.unsubscribe(conversationId.value);
+onUnmounted(() => {
+    // @ts-ignore
+    pusherClient.unsubscribe(conversationId.value);
 
-//     // @ts-ignore
-//     pusherClient.unbind("messages:new", messagesHandler);
-// });
+    // @ts-ignore
+    pusherClient.unbind("messages:new", messagesHandler);
+});
 </script>

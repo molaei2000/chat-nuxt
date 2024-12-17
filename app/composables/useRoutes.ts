@@ -22,7 +22,7 @@ export const useRoutes = () => {
         await clear();
         await fetch();
 
-        await navigateTo("/");
+        await window.location.reload();
     };
 
     const routes = computed(() => {

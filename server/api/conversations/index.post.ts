@@ -1,4 +1,5 @@
 import db from "~/utils/db";
+import { pusherServer } from "~~/server/utils/pusher";
 
 export default defineEventHandler(async (event) => {
     await requireUserSession(event);
@@ -38,15 +39,15 @@ export default defineEventHandler(async (event) => {
                 },
             });
 
-            //  for (const user of newGroupConversation.users) {
-            //      if (user.id) {
-            //          await pusherServer.trigger(
-            //              user.id,
-            //              "conversation:new",
-            //              newGroupConversation
-            //          );
-            //      }
-            //  }
+            for (const user of newGroupConversation.users) {
+                if (user.id) {
+                    await pusherServer.trigger(
+                        user.id,
+                        "conversation:new",
+                        newGroupConversation
+                    );
+                }
+            }
 
             return newGroupConversation;
         }
@@ -92,15 +93,15 @@ export default defineEventHandler(async (event) => {
             },
         });
 
-        //  for (const user of newConversation.users) {
-        //      if (user.id) {
-        //          await pusherServer.trigger(
-        //              user.id,
-        //              "conversation:new",
-        //              newConversation
-        //          );
-        //      }
-        //  }
+        for (const user of newConversation.users) {
+            if (user.id) {
+                await pusherServer.trigger(
+                    user.id,
+                    "conversation:new",
+                    newConversation
+                );
+            }
+        }
 
         return newConversation;
     }
